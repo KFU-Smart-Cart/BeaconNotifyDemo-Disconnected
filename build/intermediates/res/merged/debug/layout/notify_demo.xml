@@ -3,42 +3,29 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    >
+    android:orientation="vertical">
 
-  <include layout="@layout/toolbar" android:id="@+id/toolbar" />
+    <TextView
+        android:id="@+id/ice_status"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight=".5"
+        android:background="@color/ice"
+        android:gravity="center"
+        android:text="None"
+        android:textColor="@android:color/black"
+        android:textSize="28sp" />
 
-  <TextView
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:padding="20dp"
-      android:textSize="18sp"
-      android:text="You can lock your device now.\n\nKeep walking away from beacon and come back. Pay attention to notification bar."
-      />
 
-  <TextView
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:layout_marginTop="20dp"
-      android:layout_marginLeft="20dp"
-      android:layout_marginRight="20dp"
-      android:padding="5dp"
-      android:background="@android:color/holo_orange_dark"
-      android:textColor="@android:color/white"
-      android:text="Last posted notification:"
-      android:textSize="18sp"
-      />
+    <TextView
+        android:id="@+id/blueberry_status"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight=".5"
+        android:background="@color/blueberry"
+        android:gravity="center"
+        android:text="None"
+        android:textColor="@android:color/black"
+        android:textSize="28sp" />
 
-  <TextView
-      android:id="@+id/status"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:layout_marginRight="20dp"
-      android:layout_marginLeft="20dp"
-      android:padding="5dp"
-      android:background="@android:color/holo_orange_light"
-      android:textColor="@android:color/black"
-      android:text="None"
-      android:textSize="18sp"
-      />
 </LinearLayout><!-- From: file:/D:/DEV/Project/Android/Android-SDK-master/Demos/src/main/res/layout/notify_demo.xml -->
