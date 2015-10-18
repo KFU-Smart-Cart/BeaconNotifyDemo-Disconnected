@@ -30,7 +30,7 @@
       />
 
   <TextView
-      android:id="@+id/status"
+      android:id="@+id/ice_status"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:layout_marginRight="20dp"
@@ -41,4 +41,16 @@
       android:text="None"
       android:textSize="18sp"
       />
+    <TextView
+        android:id="@+id/blueberry_status"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:padding="5dp"
+        android:background="@android:color/holo_orange_light"
+        android:textColor="@android:color/black"
+        android:text="None"
+        android:textSize="18sp"
+        />
 </LinearLayout>

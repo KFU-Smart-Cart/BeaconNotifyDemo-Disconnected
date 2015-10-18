@@ -7,11 +7,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
+
 import com.estimote.examples.demos.R;
 import com.estimote.sdk.Beacon;
 import com.estimote.sdk.BeaconManager;
 import com.estimote.sdk.Region;
+
 import java.util.List;
+import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
 import static com.estimote.sdk.BeaconManager.MonitoringListener;
@@ -27,82 +30,112 @@ import static com.estimote.sdk.BeaconManager.MonitoringListener;
  */
 public class NotifyDemoActivity extends BaseActivity {
 
-  private static final int NOTIFICATION_ID = 123;
+    private static final int ICE_NOTIFICATION_ID = 123;
+    private static final int BLUEBERRY_NOTIFICATION_ID = 123;
 
-  private BeaconManager beaconManager;
-  private NotificationManager notificationManager;
-  private Region region;
+    private BeaconManager beaconManager;
+    private NotificationManager notificationManager;
+    private Region iceRegion;
+    private Region blueberryRegion;
 
-  @Override protected int getLayoutResId() {
-    return R.layout.notify_demo;
-  }
+    @Override
+    protected int getLayoutResId() {
+        return R.layout.notify_demo;
+    }
 
-  @Override
-  protected void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
 
-    Beacon beacon = getIntent().getParcelableExtra(ListBeaconsActivity.EXTRAS_BEACON);
-    region = new Region("regionId", beacon.getProximityUUID(), beacon.getMajor(), beacon.getMinor());
-    notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-    beaconManager = new BeaconManager(this);
+        // Beacon 1 "ice" info
+        UUID iceUUID = UUID.fromString("B9407F30-F5F8-466E-AFF9-25556B57FE6D");
+        int iceMajor = 15011;
+        int iceMinor = 3641;
+        iceRegion = new Region("ice", iceUUID ,iceMajor,iceMinor);
 
-    // Default values are 5s of scanning and 25s of waiting time to save CPU cycles.
-    // In order for this demo to be more responsive and immediate we lower down those values.
-    beaconManager.setBackgroundScanPeriod(TimeUnit.SECONDS.toMillis(1), 0);
+        // Beacon 2 "blueberry" info
+        UUID blueberryUUID = UUID.fromString("B9407F30-F5F8-466E-AFF9-25556B57FE6D");
+        int blueberryMajor = 59081;
+        int blueberryMinor = 14607;
+        blueberryRegion = new Region("blueberry", blueberryUUID ,blueberryMajor,blueberryMinor);
+//        Beacon beacon = getIntent().getParcelableExtra(ListBeaconsActivity.EXTRAS_BEACON);
+//        region = new Region("regionId", beacon.getProximityUUID(), beacon.getMajor(), beacon.getMinor());
+//        region = new Region("regionId", iceUUID ,iceMajor,iceMinor);
+//        String uun = beacon.getProximityUUID().toString();
+        notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        beaconManager = new BeaconManager(this);
 
-    beaconManager.setMonitoringListener(new MonitoringListener() {
-      @Override
-      public void onEnteredRegion(Region region, List<Beacon> beacons) {
-        postNotification("Entered region");
-      }
+        // Default values are 5s of scanning and 25s of waiting time to save CPU cycles.
+        // In order for this demo to be more responsive and immediate we lower down those values.
+//    beaconManager.setBackgroundScanPeriod(TimeUnit.SECONDS.toMillis(1), 0);
+        beaconManager.setBackgroundScanPeriod(TimeUnit.SECONDS.toMillis(1), 0);
 
-      @Override
-      public void onExitedRegion(Region region) {
-        postNotification("Exited region");
-      }
-    });
-  }
+        beaconManager.setMonitoringListener(new MonitoringListener() {
+            @Override
+            public void onEnteredRegion(Region region, List<Beacon> beacons) {
+                postNotification(region.getIdentifier(),true);
+            }
 
-  @Override
-  protected void onResume() {
-    super.onResume();
+            @Override
+            public void onExitedRegion(Region region) {
+                postNotification(region.getIdentifier(),false);
+            }
+        });
+    }
 
-    notificationManager.cancel(NOTIFICATION_ID);
-    beaconManager.connect(new BeaconManager.ServiceReadyCallback() {
-      @Override
-      public void onServiceReady() {
-        beaconManager.startMonitoring(region);
-      }
-    });
-  }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        notificationManager.cancel(ICE_NOTIFICATION_ID);
+        notificationManager.cancel(BLUEBERRY_NOTIFICATION_ID);
 
-  @Override
-  protected void onDestroy() {
-    notificationManager.cancel(NOTIFICATION_ID);
-    beaconManager.disconnect();
-    super.onDestroy();
-  }
+        beaconManager.connect(new BeaconManager.ServiceReadyCallback() {
+            @Override
+            public void onServiceReady() {
+                beaconManager.startMonitoring(iceRegion);
+                beaconManager.startMonitoring(blueberryRegion);
+            }
+        });
+    }
 
-  private void postNotification(String msg) {
-    Intent notifyIntent = new Intent(NotifyDemoActivity.this, NotifyDemoActivity.class);
-    notifyIntent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-    PendingIntent pendingIntent = PendingIntent.getActivities(
-        NotifyDemoActivity.this,
-        0,
-        new Intent[]{notifyIntent},
-        PendingIntent.FLAG_UPDATE_CURRENT);
-    Notification notification = new Notification.Builder(NotifyDemoActivity.this)
-        .setSmallIcon(R.drawable.beacon_gray)
-        .setContentTitle("Notify Demo")
-        .setContentText(msg)
-        .setAutoCancel(true)
-        .setContentIntent(pendingIntent)
-        .build();
-    notification.defaults |= Notification.DEFAULT_SOUND;
-    notification.defaults |= Notification.DEFAULT_LIGHTS;
-    notificationManager.notify(NOTIFICATION_ID, notification);
+    @Override
+    protected void onDestroy() {
+        notificationManager.cancel(ICE_NOTIFICATION_ID);
+        notificationManager.cancel(BLUEBERRY_NOTIFICATION_ID);
+        beaconManager.disconnect();
+        super.onDestroy();
+    }
 
-    TextView statusTextView = (TextView) findViewById(R.id.status);
-    statusTextView.setText(msg);
-  }
+    private void postNotification(String Identifier , Boolean states) {
+        String msg = states ? Identifier+" Entered region" : Identifier+" Exited region";
+        Intent notifyIntent = new Intent(NotifyDemoActivity.this, NotifyDemoActivity.class);
+        notifyIntent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        PendingIntent pendingIntent = PendingIntent.getActivities(
+                NotifyDemoActivity.this,
+                0,
+                new Intent[]{notifyIntent},
+                PendingIntent.FLAG_UPDATE_CURRENT);
+        Notification notification = new Notification.Builder(NotifyDemoActivity.this)
+                .setSmallIcon(R.drawable.beacon_gray)
+                .setContentTitle("Notify Demo")
+                .setContentText(msg)
+                .setAutoCancel(true)
+                .setContentIntent(pendingIntent)
+                .build();
+
+        notification.defaults |= Notification.DEFAULT_SOUND;
+        notification.defaults |= Notification.DEFAULT_LIGHTS;
+        notificationManager.notify(ICE_NOTIFICATION_ID, notification);
+        notificationManager.notify(BLUEBERRY_NOTIFICATION_ID, notification);
+
+        TextView iceStatusTextView = (TextView) findViewById(R.id.ice_status);
+        if (Identifier.equals("ice")) {
+            String iceMsg = states ? "Ice Entered region" : "Ice Exited region";
+            iceStatusTextView.setText(iceMsg);
+        }else if (Identifier.equals("blueberry")) {
+            TextView blueberryStatusTextView = (TextView) findViewById(R.id.blueberry_status);
+            String blueberryMsg = states ? "Blueberry Entered region" : "Blueberry Exited region";
+            blueberryStatusTextView.setText(blueberryMsg);
+        }
+    }
 }

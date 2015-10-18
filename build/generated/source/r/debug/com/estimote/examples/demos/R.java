@@ -1524,12 +1524,15 @@ containing a value of this type.
         public static final int abc_textfield_search_activated_mtrl_alpha=0x7f020038;
         public static final int abc_textfield_search_default_mtrl_alpha=0x7f020039;
         public static final int abc_textfield_search_material=0x7f02003a;
-        public static final int beacon_gray=0x7f02003b;
-        public static final int bg_distance=0x7f02003c;
-        public static final int dot=0x7f02003d;
-        public static final int ic_action_navigation_arrow_back=0x7f02003e;
-        public static final int notification_template_icon_bg=0x7f020040;
-        public static final int stickers_unknown=0x7f02003f;
+        public static final int beacon_blueberry=0x7f02003b;
+        public static final int beacon_gray=0x7f02003c;
+        public static final int beacon_ice=0x7f02003d;
+        public static final int beacon_mint=0x7f02003e;
+        public static final int bg_distance=0x7f02003f;
+        public static final int dot=0x7f020040;
+        public static final int ic_action_navigation_arrow_back=0x7f020041;
+        public static final int notification_template_icon_bg=0x7f020043;
+        public static final int stickers_unknown=0x7f020042;
     }
     public static final class id {
         public static final int action0=0x7f0b0065;
@@ -1553,6 +1556,7 @@ containing a value of this type.
         public static final int always=0x7f0b0016;
         public static final int beacon_details=0x7f0b0058;
         public static final int beginning=0x7f0b0013;
+        public static final int blueberry_status=0x7f0b0073;
         public static final int buttonPanel=0x7f0b0036;
         public static final int cancel_action=0x7f0b0066;
         public static final int characteristics_demo_button=0x7f0b0052;
@@ -1581,6 +1585,7 @@ containing a value of this type.
         public static final int expanded_menu=0x7f0b0037;
         public static final int home=0x7f0b0004;
         public static final int homeAsUp=0x7f0b000d;
+        public static final int ice_status=0x7f0b0072;
         public static final int icon=0x7f0b002b;
         public static final int ifRoom=0x7f0b0018;
         public static final int image=0x7f0b0028;
@@ -1592,7 +1597,7 @@ containing a value of this type.
         public static final int media_actions=0x7f0b0068;
         public static final int middle=0x7f0b0015;
         public static final int minor=0x7f0b005a;
-        public static final int motion=0x7f0b0074;
+        public static final int motion=0x7f0b0076;
         public static final int multiply=0x7f0b001e;
         public static final int nearable_dynamic_details=0x7f0b0064;
         public static final int nearable_static_details=0x7f0b0063;
@@ -1605,7 +1610,7 @@ containing a value of this type.
         public static final int progress_circular=0x7f0b0005;
         public static final int progress_horizontal=0x7f0b0006;
         public static final int radio=0x7f0b003a;
-        public static final int refresh=0x7f0b0075;
+        public static final int refresh=0x7f0b0077;
         public static final int root=0x7f0b005c;
         public static final int screen=0x7f0b001f;
         public static final int scrollView=0x7f0b0032;
@@ -1632,10 +1637,10 @@ containing a value of this type.
         public static final int src_over=0x7f0b0022;
         public static final int status=0x7f0b0057;
         public static final int status_bar_latest_event_content=0x7f0b0067;
-        public static final int status_view=0x7f0b0072;
+        public static final int status_view=0x7f0b0074;
         public static final int submit_area=0x7f0b004b;
         public static final int tabMode=0x7f0b000b;
-        public static final int temperature=0x7f0b0073;
+        public static final int temperature=0x7f0b0075;
         public static final int text=0x7f0b006f;
         public static final int text2=0x7f0b006d;
         public static final int textSpacerNoButtons=0x7f0b0033;
