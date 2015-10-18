@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-  <color name="primary">#ffcdcdcd</color>
-  <color name="primary_dark">#ffaeaeae</color>
-  <color name="black">#ff050505</color>
+    <color name="primary">#ffcdcdcd</color>
+    <color name="primary_dark">#ffaeaeae</color>
+    <color name="black">#ff050505</color>
+    <color name="ice">#66FFFF</color>
+    <color name="blueberry">#6600FF</color>
 
 </resources>

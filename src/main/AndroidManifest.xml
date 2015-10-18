@@ -24,7 +24,7 @@
       android:theme="@style/EstimoteTheme">
 
     <activity
-        android:name=".activities.AllDemosActivity"
+        android:name=".activities.NotifyDemoActivity"
         android:label="Estimote Demos"
         android:screenOrientation="portrait">
       <intent-filter>
@@ -52,7 +52,7 @@
               android:label="Distance Demo"
               android:screenOrientation="portrait"/>
 
-    <activity android:name=".activities.NotifyDemoActivity"
+    <activity android:name=".activities.AllDemosActivity"
               android:label="Notify Demo"
               android:screenOrientation="portrait"/>
 

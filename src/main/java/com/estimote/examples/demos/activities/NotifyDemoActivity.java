@@ -6,6 +6,7 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
 import com.estimote.examples.demos.R;
@@ -28,7 +29,7 @@ import static com.estimote.sdk.BeaconManager.MonitoringListener;
  *
  * @author wiktor@estimote.com (Wiktor Gworek)
  */
-public class NotifyDemoActivity extends BaseActivity {
+public class NotifyDemoActivity extends AppCompatActivity {
 
     private static final int ICE_NOTIFICATION_ID = 123;
     private static final int BLUEBERRY_NOTIFICATION_ID = 123;
@@ -38,14 +39,15 @@ public class NotifyDemoActivity extends BaseActivity {
     private Region iceRegion;
     private Region blueberryRegion;
 
-    @Override
-    protected int getLayoutResId() {
-        return R.layout.notify_demo;
-    }
+//    @Override
+//    protected int getLayoutResId() {
+//        return R.layout.notify_demo;
+//    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.notify_demo);
 
         // Beacon 1 "ice" info
         UUID iceUUID = UUID.fromString("B9407F30-F5F8-466E-AFF9-25556B57FE6D");
@@ -108,6 +110,7 @@ public class NotifyDemoActivity extends BaseActivity {
 
     private void postNotification(String Identifier , Boolean states) {
         String msg = states ? Identifier+" Entered region" : Identifier+" Exited region";
+        int beaconColor = R.drawable.beacon_gray;
         Intent notifyIntent = new Intent(NotifyDemoActivity.this, NotifyDemoActivity.class);
         notifyIntent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
         PendingIntent pendingIntent = PendingIntent.getActivities(
@@ -115,8 +118,14 @@ public class NotifyDemoActivity extends BaseActivity {
                 0,
                 new Intent[]{notifyIntent},
                 PendingIntent.FLAG_UPDATE_CURRENT);
+
+        if (Identifier.equals("ice")) {
+            beaconColor = R.drawable.beacon_ice;
+        }else if (Identifier.equals("blueberry")) {
+            beaconColor = R.drawable.beacon_blueberry;
+        }
         Notification notification = new Notification.Builder(NotifyDemoActivity.this)
-                .setSmallIcon(R.drawable.beacon_gray)
+                .setSmallIcon((beaconColor))
                 .setContentTitle("Notify Demo")
                 .setContentText(msg)
                 .setAutoCancel(true)
@@ -128,8 +137,8 @@ public class NotifyDemoActivity extends BaseActivity {
         notificationManager.notify(ICE_NOTIFICATION_ID, notification);
         notificationManager.notify(BLUEBERRY_NOTIFICATION_ID, notification);
 
-        TextView iceStatusTextView = (TextView) findViewById(R.id.ice_status);
         if (Identifier.equals("ice")) {
+            TextView iceStatusTextView = (TextView) findViewById(R.id.ice_status);
             String iceMsg = states ? "Ice Entered region" : "Ice Exited region";
             iceStatusTextView.setText(iceMsg);
         }else if (Identifier.equals("blueberry")) {

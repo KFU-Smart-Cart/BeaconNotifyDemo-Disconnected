@@ -29,14 +29,14 @@ MERGED from [com.android.support:support-v4:22.2.0] D:\DEV\Project\Android\Andro
 		ADDED from D:\DEV\Project\Android\Android-SDK-master\Demos\src\main\AndroidManifest.xml:24:7-43
 	android:name
 		ADDED from D:\DEV\Project\Android\Android-SDK-master\Demos\src\main\AndroidManifest.xml:22:7-39
-activity#com.estimote.examples.demos.activities.AllDemosActivity
+activity#com.estimote.examples.demos.activities.NotifyDemoActivity
 ADDED from D:\DEV\Project\Android\Android-SDK-master\Demos\src\main\AndroidManifest.xml:26:5-34:16
 	android:screenOrientation
 		ADDED from D:\DEV\Project\Android\Android-SDK-master\Demos\src\main\AndroidManifest.xml:29:9-45
 	android:label
 		ADDED from D:\DEV\Project\Android\Android-SDK-master\Demos\src\main\AndroidManifest.xml:28:9-39
 	android:name
-		ADDED from D:\DEV\Project\Android\Android-SDK-master\Demos\src\main\AndroidManifest.xml:27:9-52
+		ADDED from D:\DEV\Project\Android\Android-SDK-master\Demos\src\main\AndroidManifest.xml:27:9-54
 intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
 ADDED from D:\DEV\Project\Android\Android-SDK-master\Demos\src\main\AndroidManifest.xml:30:7-33:23
 action#android.intent.action.MAIN
@@ -79,14 +79,14 @@ ADDED from D:\DEV\Project\Android\Android-SDK-master\Demos\src\main\AndroidManif
 		ADDED from D:\DEV\Project\Android\Android-SDK-master\Demos\src\main\AndroidManifest.xml:52:15-44
 	android:name
 		ADDED from D:\DEV\Project\Android\Android-SDK-master\Demos\src\main\AndroidManifest.xml:51:15-64
-activity#com.estimote.examples.demos.activities.NotifyDemoActivity
+activity#com.estimote.examples.demos.activities.AllDemosActivity
 ADDED from D:\DEV\Project\Android\Android-SDK-master\Demos\src\main\AndroidManifest.xml:55:5-57:53
 	android:screenOrientation
 		ADDED from D:\DEV\Project\Android\Android-SDK-master\Demos\src\main\AndroidManifest.xml:57:15-51
 	android:label
 		ADDED from D:\DEV\Project\Android\Android-SDK-master\Demos\src\main\AndroidManifest.xml:56:15-42
 	android:name
-		ADDED from D:\DEV\Project\Android\Android-SDK-master\Demos\src\main\AndroidManifest.xml:55:15-60
+		ADDED from D:\DEV\Project\Android\Android-SDK-master\Demos\src\main\AndroidManifest.xml:55:15-58
 activity#com.estimote.examples.demos.activities.CharacteristicsDemoActivity
 ADDED from D:\DEV\Project\Android\Android-SDK-master\Demos\src\main\AndroidManifest.xml:59:5-61:53
 	android:screenOrientation
