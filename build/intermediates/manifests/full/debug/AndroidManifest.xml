@@ -32,11 +32,12 @@
 
     <application
         android:name="com.estimote.examples.demos.DemosApplication"
-        android:label="Estimote Demos"
+        android:icon="@drawable/beacon_mint"
+        android:label="Beacon Notify Demos"
         android:theme="@style/EstimoteTheme" >
         <activity
             android:name="com.estimote.examples.demos.activities.NotifyDemoActivity"
-            android:label="Estimote Demos"
+            android:label="Beacon Notify Demo"
             android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

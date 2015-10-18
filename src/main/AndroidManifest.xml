@@ -20,12 +20,13 @@
 
   <application
       android:name=".DemosApplication"
-      android:label="Estimote Demos"
-      android:theme="@style/EstimoteTheme">
+      android:label="Beacon Notify Demos"
+      android:theme="@style/EstimoteTheme"
+      android:icon="@drawable/beacon_mint">
 
     <activity
         android:name=".activities.NotifyDemoActivity"
-        android:label="Estimote Demos"
+        android:label="Beacon Notify Demo"
         android:screenOrientation="portrait">
       <intent-filter>
         <action android:name="android.intent.action.MAIN"/>
