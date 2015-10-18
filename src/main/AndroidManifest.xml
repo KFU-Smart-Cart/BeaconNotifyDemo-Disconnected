@@ -24,6 +24,7 @@
       android:theme="@style/EstimoteTheme"
       android:icon="@drawable/beacon_mint">
 
+
     <activity
         android:name=".activities.NotifyDemoActivity"
         android:label="Beacon Notify Demo"
